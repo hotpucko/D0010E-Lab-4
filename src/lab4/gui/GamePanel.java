@@ -42,7 +42,7 @@ public class GamePanel extends JPanel implements Observer{
 	 * @return an integer array containing the [x, y] grid position
 	 */
 	public int[] getGridPosition(int x, int y){
-		return null;
+		return new int[]{x / this.UNIT_SIZE, y / this.UNIT_SIZE}; //performs whole number division, i.e. 5/2=2
 	}
 	
 	public void update(Observable arg0, Object arg1) {
