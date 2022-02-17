@@ -1,4 +1,6 @@
 package lab4.gui;
+import java.awt.Button;
+import java.awt.Label;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -14,7 +16,10 @@ public class GomokuGUI implements Observer{
 
 	private GomokuClient client;
 	private GomokuGameState gamestate;
-	
+	private Button connectButton;
+	private Button newGameButton;
+	private Button disconnectButton;
+	private Label messageLabel;
 	/**
 	 * The constructor
 	 * 
