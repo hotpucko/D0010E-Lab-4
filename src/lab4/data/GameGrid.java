@@ -11,7 +11,7 @@ public class GameGrid extends Observable{
 	static final int EMPTY= 0;
 	static final int OTHER= 1;
 	static final int ME= 2;
-	static final int INROW = 5;
+	static final int INROW =5;
 	int[][] grid; 
 	
 
@@ -41,8 +41,7 @@ public class GameGrid extends Observable{
 	 * @return the value of the specified location
 	 */
 	public int getLocation(int x, int y) {
-		
-		return 0;
+		return grid[x][y];
 	}
 	
 	/**
@@ -51,7 +50,7 @@ public class GameGrid extends Observable{
 	 * @return the grid size
 	 */
 	public int getSize(){
-		return 0;
+		return grid.length;
 	}
 	
 	/**
@@ -93,14 +92,14 @@ public class GameGrid extends Observable{
 	}
 	
 	/**
-	 * Check if a player has 5 in row
+	 * Check if a player has the required amount of pieces in row to win
 	 * 
 	 * @param player the player to check for
 	 * @return true if player has 5 in row, false otherwise
 	 */
 	public boolean isWinner(int player){
 		
-		int[] winarray = new int[] {1,1,1,1,1};
+		int[] winarray = new int[] {player,player,player,player,player};
 
         for (int i = INROW; i < grid[0].length; i++)
         {
