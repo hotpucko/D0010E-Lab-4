@@ -12,7 +12,7 @@ public class GameGrid extends Observable{
 	static final int OTHER= 1;
 	static final int ME= 2;
 	static final int INROW = 5;
-	int[][] boardSpaces; 
+	int[][] grid; 
 	
 
 	/**
@@ -22,7 +22,12 @@ public class GameGrid extends Observable{
 	 */
 	public GameGrid(int size){
 		
-	int[][] boardSpaces = new int[size][size];
+	grid = new int[size][size];
+	for (int i=0; i< (grid.length); i++) {
+		for (int j = 0; j < grid[0].length;j++) {
+			grid[i][j] = EMPTY;
+			}
+		}
 	
 	}
 	
@@ -58,14 +63,17 @@ public class GameGrid extends Observable{
 	 * @return true if the insertion worked, false otherwise
 	 */
 	public boolean move(int x, int y, int player){
-		if ( boardSpaces[x][y] == EMPTY){
+		if ( grid[x][y] == EMPTY){
 			if (player == 1) {
-				boardSpaces[x][y] = ME;
+				grid[x][y] = ME;
+			}else {
+				grid[x][y]= OTHER;
+			}	
 				setChanged();
 				notifyObservers();
 				return true;
 			}
-		}
+		
 		return false;
 	}
 	
@@ -73,9 +81,9 @@ public class GameGrid extends Observable{
 	 * Clears the grid of pieces
 	 */
 	public void clearGrid(){
-		for (int i=0; i< boardSpaces[0].length; i++) {
-			for(int j=0; j <boardSpaces.length; j++) {
-				boardSpaces[i][j] = EMPTY;
+		for (int i=0; i< grid[0].length; i++) {
+			for(int j=0; j <grid.length; j++) {
+				grid[i][j] = EMPTY;
 			}
 				
 		}
@@ -91,92 +99,27 @@ public class GameGrid extends Observable{
 	 * @return true if player has 5 in row, false otherwise
 	 */
 	public boolean isWinner(int player){
-		int[] hMask =new int[] {1,1,1,1,1};
-		int[] vMask = new int [] {1,1,1,1,1};
-//		int[][]dDownMask = new int[5][5];
-//		
-//		for (int i =0; i  < dDownMask.length; i++) {
-//			
-//			dDownMask [i][i] =1;
-//		}
 		
-		
-		//checks horizontal wins
-		for (int i=0; i< (boardSpaces[0].length - INROW); i++) { 
-			
-			for (int j = 0; j < boardSpaces.length;j++) {
-				
-			int[] Checkwin =new int []{boardSpaces[i][j], boardSpaces[i+1][j], boardSpaces[i+2][j], boardSpaces[i+3][j], boardSpaces[i+4][j]};
-			if 	(Checkwin == hMask) {
-				return true;
-				}
-			}
-		}
-		//Checks vertical wins
-			for (int i=0; i< (boardSpaces.length - INROW); i++) {
-				
-				for (int j = 0; j < boardSpaces[0].length;j++) {
-					
-					int[] Checkwin =new int []{boardSpaces[i][j], boardSpaces[i+1][j], boardSpaces[i+2][j], boardSpaces[i+3][j], boardSpaces[i+4][j]};
-					if 	(Checkwin == vMask) {
-						return true;
-					}
-					
-				}
-				
-			}
-		// checks NW to SE wins
-			
-			int[][] subMatrix = new int[INROW][INROW];
-			
-			for (int i =0; i< boardSpaces.length - INROW; i++) {
-				for (int j =0; j<boardSpaces[0].length -INROW; j++) {
+		int[] winarray = new int[] {1,1,1,1,1};
 
-					for (int k = 0; k < INROW; k++) {
-						for (int l = 0; l < INROW; l++) {
-							
-							subMatrix[k][l] = boardSpaces[i][j];
-							int diagonalCounter=0;
-							
-							for (int m =0; m  < INROW; m++) {
-								
-								if (subMatrix [m][m] ==1) {
-									diagonalCounter++;
-									if (diagonalCounter == INROW){
-										return true;
-									}	
-								}
-							}
-						}
-					}
-				}
-			}
-			// for SW to NE wins
-			int[][] subMatrix2 = new int[INROW][INROW];
-			
-			for (int i =0; i< boardSpaces.length - INROW; i++) {
-				for (int j =0; j<boardSpaces[0].length -INROW; j++) {
-					
-					for (int k = 0; k < INROW; k++) {
-						for (int l = 0; l < INROW; l++) {
-							
-							subMatrix2[k][l] = boardSpaces[i][j];
-							int diagonalCounter2= 0;
-						
-							for (int m =0; m  < INROW; m++) {
-								for (int n=INROW; n > -1; n--) {
-									
-									if (subMatrix [m][n] ==1)
-										diagonalCounter2++;
-									if (diagonalCounter2 == INROW){
-										return true;
-								}
-							}
-	}
-						}
-					}
-				}
-			}
+        for (int i = INROW; i < grid[0].length; i++)
+        {
+            for (int j = 0; j < grid.length - INROW; j++)
+            {
+                int[] drwin = new int[INROW];
+                int[] dlwin = new int[INROW];
+
+                for (int k = 0; k < INROW; k++)
+                {
+                    drwin[k] = grid[i-k][j+k];
+                    dlwin[k] = grid[i+k][j+k];
+                }
+
+                if (dlwin == winarray || drwin == winarray)
+                    return true;
+
+            }
+        }
 return false;
 	}
 }
