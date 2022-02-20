@@ -1,8 +1,15 @@
 package lab4.gui;
 import java.awt.Button;
+import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.Label;
 import java.util.Observable;
 import java.util.Observer;
+
+import javax.swing.Box;
+import javax.swing.BoxLayout;
+import javax.swing.JButton;
+import javax.swing.JFrame;
 
 import lab4.client.GomokuClient;
 import lab4.data.GameGrid;
@@ -16,9 +23,9 @@ public class GomokuGUI implements Observer{
 
 	private GomokuClient client;
 	private GomokuGameState gamestate;
-	private Button connectButton;
-	private Button newGameButton;
-	private Button disconnectButton;
+	private JButton connectButton;
+	private JButton newGameButton;
+	private JButton disconnectButton;
 	private Label messageLabel;
 	/**
 	 * The constructor
@@ -32,6 +39,36 @@ public class GomokuGUI implements Observer{
 		client.addObserver(this);
 		gamestate.addObserver(this);
 		
+		connectButton = new JButton("connect");
+		newGameButton = new JButton("new game");
+		disconnectButton = new JButton("disconnect");
+		messageLabel = new Label("text");
+		
+		GamePanel panel = new GamePanel(new GameGrid(5));
+		panel.setVisible(true);
+		
+		JFrame frame = new JFrame();
+		
+		frame.setLayout(new FlowLayout());
+		frame.setVisible(true);
+		
+		
+		
+		Box verticalBox = Box.createVerticalBox();
+		
+		Box buttonBox = Box.createHorizontalBox();
+		buttonBox.add(connectButton);
+		buttonBox.add(newGameButton);
+		buttonBox.add(disconnectButton);
+		
+		verticalBox.add(panel);
+		verticalBox.add(buttonBox);
+		verticalBox.add(messageLabel);
+		
+		frame.add(verticalBox);
+		
+		
+		frame.pack();
 		
 	}
 	
