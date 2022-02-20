@@ -3,6 +3,8 @@ import java.awt.Button;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Label;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -39,21 +41,36 @@ public class GomokuGUI implements Observer{
 		client.addObserver(this);
 		gamestate.addObserver(this);
 		
+		//initialize variables
 		connectButton = new JButton("connect");
 		newGameButton = new JButton("new game");
 		disconnectButton = new JButton("disconnect");
 		messageLabel = new Label("text");
 		
-		GamePanel panel = new GamePanel(new GameGrid(5));
+		
+		
+		//initialize panel
+		GamePanel panel = new GamePanel(g.getGameGrid());
 		panel.setVisible(true);
+		//add listener
+		MouseAdapter mouseAdapter = new MouseAdapter() {
+			public void mouseClicked(MouseEvent e) {
+				int[] clickedPosition = panel.getGridPosition(e.getX(), e.getY());
+				g.move(clickedPosition[0], clickedPosition[1]);
+				System.out.println(String.format("clicked x: %s, y: %s, gridPos: x: %d, y: %d", e.getX(), e.getY(), clickedPosition[0], clickedPosition[1]));
+			}
+		};
+		panel.addMouseListener(mouseAdapter);
 		
+		//initialize frame
 		JFrame frame = new JFrame();
-		
 		frame.setLayout(new FlowLayout());
 		frame.setVisible(true);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		
 		
+		//handle UI structure
 		Box verticalBox = Box.createVerticalBox();
 		
 		Box buttonBox = Box.createHorizontalBox();
@@ -66,10 +83,7 @@ public class GomokuGUI implements Observer{
 		verticalBox.add(messageLabel);
 		
 		frame.add(verticalBox);
-		
-		
 		frame.pack();
-		
 	}
 	
 	
