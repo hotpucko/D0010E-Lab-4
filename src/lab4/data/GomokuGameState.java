@@ -38,6 +38,7 @@ public class GomokuGameState extends Observable implements Observer{
 		currentState = NOT_STARTED;
 		gameGrid = new GameGrid(DEFAULT_SIZE);
 		this.message ="unchanged gamestate";
+		this.receivedNewGame();
 	}
 	
 
