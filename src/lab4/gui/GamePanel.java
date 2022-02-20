@@ -26,7 +26,7 @@ public class GamePanel extends JPanel implements Observer{
 	 */
 	public GamePanel(GameGrid grid){
 		this.grid = grid;
-		grid.addObserver(this);
+		this.grid.addObserver(this);
 		Dimension d = new Dimension(grid.getSize()*UNIT_SIZE+1, grid.getSize()*UNIT_SIZE+1);
 		this.setMinimumSize(d);
 		this.setPreferredSize(d);
@@ -57,6 +57,10 @@ public class GamePanel extends JPanel implements Observer{
 			for (int j = 0; j < grid.getSize(); j++)
 			{
 				g.drawRect(i * UNIT_SIZE, j * UNIT_SIZE, UNIT_SIZE, UNIT_SIZE);
+				if(grid.getLocation(i, j) == GameGrid.GridState.ME) //magic numbers bc grid.me etc is not public atm //player ME
+				{
+					g.drawString("me", i * UNIT_SIZE, (j + 1)* UNIT_SIZE);
+				}
 			}
 		}
 	}
