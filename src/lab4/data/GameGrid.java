@@ -64,7 +64,7 @@ public class GameGrid extends Observable{
 	 */
 	public boolean move(int x, int y, int player){
 		if ( grid[x][y] == EMPTY){
-			if (player == 1) {
+			if (player == GameGrid.ME) {
 				grid[x][y] = ME;
 			}else {
 				grid[x][y]= OTHER;
@@ -102,7 +102,7 @@ public class GameGrid extends Observable{
 		
 		int[] winarray = new int[] {player,player,player,player,player};
 
-        for (int i = INROW; i < grid[0].length; i++)
+        for (int i = 0; i < grid[0].length; i++)
         {
             for (int j = 0; j < grid.length - INROW; j++)
             {
@@ -111,8 +111,11 @@ public class GameGrid extends Observable{
 
                 for (int k = 0; k < INROW; k++)
                 {
-                    drwin[k] = grid[i-k][j+k];
-                    dlwin[k] = grid[i+k][j+k];
+                	System.out.println(String.format("i: %s, j: %s, k: %s", i, j, k));
+                	if(i < grid[0].length - INROW)
+                		drwin[k] = grid[i+k][j+k];
+                	if(i >= INROW)
+                		dlwin[k] = grid[i-k][j+k];
                 }
 
                 if (dlwin == winarray || drwin == winarray)
