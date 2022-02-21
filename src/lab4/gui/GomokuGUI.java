@@ -3,6 +3,8 @@ import java.awt.Button;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Label;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.Observable;
@@ -29,6 +31,9 @@ public class GomokuGUI implements Observer{
 	private JButton newGameButton;
 	private JButton disconnectButton;
 	private Label messageLabel;
+	
+	private ConnectionWindow connectionWindow;
+	
 	/**
 	 * The constructor
 	 * 
@@ -43,8 +48,31 @@ public class GomokuGUI implements Observer{
 		
 		//initialize variables
 		connectButton = new JButton("connect");
+		
+		ActionListener connectListener = new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				connectionWindow = new ConnectionWindow(c);
+				System.out.println("conn");
+			}
+		};
+		connectButton.addActionListener(connectListener);
+		
 		newGameButton = new JButton("new game");
+		ActionListener newGameListener = new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				g.newGame();
+			}
+		};
+		newGameButton.addActionListener(newGameListener);
+		
 		disconnectButton = new JButton("disconnect");
+		ActionListener disconnectListener = new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				g.disconnect();
+			}
+		};
+		disconnectButton.addActionListener(disconnectListener);
+		
 		messageLabel = new Label("text");
 		
 		
@@ -67,6 +95,7 @@ public class GomokuGUI implements Observer{
 		frame.setLayout(new FlowLayout());
 		frame.setVisible(true);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setResizable(false);
 		
 		
 		
