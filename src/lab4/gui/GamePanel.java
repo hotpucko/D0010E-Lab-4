@@ -56,10 +56,15 @@ public class GamePanel extends JPanel implements Observer{
 		{
 			for (int j = 0; j < grid.getSize(); j++)
 			{
-				g.drawRect(i * UNIT_SIZE, j * UNIT_SIZE, UNIT_SIZE, UNIT_SIZE);
-				if(grid.getLocation(i, j) == GameGrid.GridState.ME) //magic numbers bc grid.me etc is not public atm //player ME
+				g.drawRect(i * UNIT_SIZE, j * UNIT_SIZE, UNIT_SIZE, UNIT_SIZE); //draw grid
+				
+				if(grid.getLocation(i, j) == GameGrid.ME) 
 				{
 					g.drawString("me", i * UNIT_SIZE, (j + 1)* UNIT_SIZE);
+				}
+				else if(grid.getLocation(i, j) == GameGrid.OTHER)
+				{
+					g.drawString("opp", i * UNIT_SIZE, (j + 1)* UNIT_SIZE);
 				}
 			}
 		}
