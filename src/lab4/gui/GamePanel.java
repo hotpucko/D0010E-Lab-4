@@ -2,6 +2,7 @@ package lab4.gui;
 
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.util.Observable;
 import java.util.Observer;
@@ -31,6 +32,7 @@ public class GamePanel extends JPanel implements Observer{
 		this.setMinimumSize(d);
 		this.setPreferredSize(d);
 		this.setBackground(Color.WHITE);
+		this.getGraphics().setFont(new Font("TimesRoman", Font.BOLD, 12));
 	}
 
 	/**
@@ -51,6 +53,7 @@ public class GamePanel extends JPanel implements Observer{
 	
 	public void paintComponent(Graphics g){
 		super.paintComponent(g);
+		
 		g.setColor(Color.black);
 		for(int i = 0; i < grid.getSize(); i++)
 		{
@@ -60,11 +63,11 @@ public class GamePanel extends JPanel implements Observer{
 				
 				if(grid.getLocation(i, j) == GameGrid.ME) 
 				{
-					g.drawString("me", i * UNIT_SIZE, (j + 1)* UNIT_SIZE);
+					g.drawString("x", i * UNIT_SIZE, (j + 1)* UNIT_SIZE);
 				}
 				else if(grid.getLocation(i, j) == GameGrid.OTHER)
 				{
-					g.drawString("opp", i * UNIT_SIZE, (j + 1)* UNIT_SIZE);
+					g.drawString("o", i * UNIT_SIZE, (j + 1)* UNIT_SIZE);
 				}
 			}
 		}
