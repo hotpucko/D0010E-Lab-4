@@ -101,6 +101,7 @@ public class GameGrid extends Observable{
 	public boolean isWinner(int player){
 		
 		int[] winarray = new int[] {player,player,player,player,player};
+		
 
         for (int i = 0; i < grid[0].length; i++)
         {
@@ -121,9 +122,40 @@ public class GameGrid extends Observable{
                 	System.out.println(String.format("%s, %s, %s, %s, %s", drwin[0], drwin[1], drwin[2], drwin[3], drwin[4]));
                 if (Arrays.equals(dlwin, winarray) || Arrays.equals(drwin, winarray))
                     return true;
+                
 
             }
         }
-        return false;
-	}
+    	for (int i =0; i< grid[0].length; i++) {
+    		int verticalwin=0;
+    	for (int j = 0; j < grid.length-INROW; j++) {
+    		if(grid[i][j] == player) {
+    		if (grid[i][j] == grid[i][j+1]) {
+    			verticalwin++;
+    			if (verticalwin == INROW-1) {
+    			}
+    			return true;
+    			}
+    		}else { verticalwin = 0;
+    			
+    		}
+    		}
+    	}
+    	for (int j = 0; j < grid.length; j++) {
+    		int horizontalwin=0;
+        		for (int i =0; i< grid[0].length-INROW; i++) {
+        			if(grid[i][j] == player) {
+        		if (grid[i][j] == grid[i+1][j]) {
+        			horizontalwin++;
+        			if (horizontalwin == INROW-1) {
+        				return true;
+        			}
+        			}else { horizontalwin = 0;
+        	
+        		}
+        	}
+        }
+	} 
+    	return false;
+}
 }
