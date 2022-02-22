@@ -1,14 +1,24 @@
 package lab4.data;
 
+/*
+ * @author Arvid From
+ */
+
 import java.lang.reflect.Array;
 import java.util.Arrays;
 import java.util.Observable;
 
 public class GameGrid extends Observable {
-
+	
+/* the space on the board is empty */
 	public static final int EMPTY = 0;
+	
+/*the space on the board is occupied by the opponent*/
 	public static final int OTHER = 1;
+	
+/*the space on the board is occupied by the player*/
 	public static final int ME = 2;
+	
 	static final int INROW = 5;
 	int[][] grid;
 
@@ -93,10 +103,10 @@ public class GameGrid extends Observable {
 
 	/**
 	 * Check if a player has the required amount of pieces in row to win
-	 * 
+	 * along vertical, horizontal and diagonal axes.
 	 * @param player
-	 *            the player to check for
-	 * @return true if player has 5 in row, false otherwise
+	 *            the player to check whether they have won
+	 * @return true if player has correct amount of pieces in row, false otherwise
 	 */
 	public boolean isWinner(int player) {
 

@@ -1,4 +1,7 @@
 package lab4.data;
+/*
+ * @author Arvid From
+ */
 
 import java.util.Observable;
 import java.util.Observer;
@@ -60,7 +63,7 @@ public class GomokuGameState extends Observable implements Observer {
 
 	/**
 	 * This player makes a move at a specified location
-	 * 
+	 * The game checks whether the placed move won the game
 	 * @param x
 	 *            the x coordinate
 	 * @param y
