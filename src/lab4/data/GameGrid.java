@@ -1,5 +1,6 @@
 	package lab4.data;
 
+import java.util.Arrays;
 import java.util.Observable;
 
 /**
@@ -110,18 +111,19 @@ public class GameGrid extends Observable{
 
                 for (int k = 0; k < INROW; k++)
                 {
-                	System.out.println(String.format("i: %s, j: %s, k: %s", i, j, k));
+                	//System.out.println(String.format("i: %s, j: %s, k: %s", i, j, k));
                 	if(i < grid[0].length - INROW)
                 		drwin[k] = grid[i+k][j+k];
                 	if(i >= INROW)
                 		dlwin[k] = grid[i-k][j+k];
                 }
-
-                if (dlwin == winarray || drwin == winarray)
+                if(drwin[0] != 0)
+                	System.out.println(String.format("%s, %s, %s, %s, %s", drwin[0], drwin[1], drwin[2], drwin[3], drwin[4]));
+                if (Arrays.equals(dlwin, winarray) || Arrays.equals(drwin, winarray))
                     return true;
 
             }
         }
-return false;
+        return false;
 	}
 }
