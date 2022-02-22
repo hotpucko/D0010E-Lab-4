@@ -32,7 +32,6 @@ public class GamePanel extends JPanel implements Observer{
 		this.setMinimumSize(d);
 		this.setPreferredSize(d);
 		this.setBackground(Color.WHITE);
-		this.getGraphics().setFont(new Font("TimesRoman", Font.BOLD, 12));
 	}
 
 	/**
