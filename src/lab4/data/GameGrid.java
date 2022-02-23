@@ -4,8 +4,10 @@ import java.lang.reflect.Array;
 import java.util.Arrays;
 import java.util.Observable;
 
-/*
- * @author Arvid From
+/**
+ * Handles the gameboard, and the state of it
+ * @author Arvid From, Stefan Jonsson
+ * 
  */
 
 public class GameGrid extends Observable {

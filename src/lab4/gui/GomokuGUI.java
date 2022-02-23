@@ -19,7 +19,7 @@ import lab4.data.GomokuGameState;
 /**
  * GomokuGUI is the class for generating and handling the general Gomoku GUI
  * 
- * @author Stefan Jonsson4
+ * @author Stefan Jonsson, Arvid From
  *
  */
 public class GomokuGUI implements Observer {

@@ -14,7 +14,7 @@ import lab4.data.GameGrid;
 /**
  * A panel providing a graphical view of the game board
  * 
- * @author Stefan Jonsson
+ * @author Stefan Jonsson, Arvid From
  *
  */
 public class GamePanel extends JPanel implements Observer {

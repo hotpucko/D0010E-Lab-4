@@ -6,9 +6,9 @@ import java.util.Observer;
 import lab4.client.GomokuClient;
 
 /*
- * Represents the state of a game
+ * Represents the state of a game, winstates, turns etc.
  * 
- * @author Arvid From
+ * @author Arvid From, Stefan Jonsson
  */
 public class GomokuGameState extends Observable implements Observer {
 
