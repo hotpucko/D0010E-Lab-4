@@ -1,16 +1,14 @@
 package lab4.data;
 
 
-
 import java.lang.reflect.Array;
 import java.util.Arrays;
 import java.util.Observable;
 
 /*
- * 
- * 
  * @author Arvid From
  */
+
 public class GameGrid extends Observable {
 	
 /* the space on the board is empty */
@@ -28,8 +26,11 @@ public class GameGrid extends Observable {
 	/**
 	 * Constructor
 	 * 
+	 * Constructs the grid upon which player moves
+	 * will be made
+	 * 
 	 * @param size
-	 *            The width/height of the game grid
+	 * The width/height of the game grid
 	 */
 	public GameGrid(int size) {
 
@@ -120,12 +121,11 @@ public class GameGrid extends Observable {
 			for (int j = 0; j < grid.length; j++) {
 				int[] drwin = new int[INROW];
 				int[] dlwin = new int[INROW];
-
+														//empty arrays to compare the winnning array to
 				int[] dwin = new int[INROW];
 				int[] rwin = new int[INROW];
 
 				for (int k = 0; k < INROW; k++) {
-					// System.out.println(String.format("i: %s, j: %s, k: %s", i, j, k));
 					if (i <= grid[0].length - INROW && j <= grid.length - INROW) {
 						drwin[k] = grid[i + k][j + k];
 					}
