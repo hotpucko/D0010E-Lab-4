@@ -13,12 +13,15 @@ import lab4.data.GameGrid;
 
 /**
  * A panel providing a graphical view of the game board
+ * 
+ * @author Stefan Jonsson
+ *
  */
-
 public class GamePanel extends JPanel implements Observer {
 
+	// conversion rate from the typographical point to pixels
 	private static final float PIXEL_TO_PTS_MULTIPLIER = 1.9f;
-	private final int UNIT_SIZE = 30;
+	private final int UNIT_SIZE = 15; /* The side size of the grid squares */
 	private GameGrid grid;
 
 	/**

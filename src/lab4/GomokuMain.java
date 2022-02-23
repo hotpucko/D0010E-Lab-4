@@ -7,8 +7,20 @@ import lab4.gui.GomokuGUI;
 public class GomokuMain {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		GomokuClient client = new GomokuClient(4000);
+		int port = -1;
+		
+		try {
+			if(args.length > 0)
+				port = Integer.parseInt(args[0]);
+		}
+		catch (Exception e)
+		{
+			System.out.println("Argument did not match the format: enter an integer");
+		}
+		
+		
+		
+		GomokuClient client = new GomokuClient( port == - 1 ? 4000 : port);
 		GomokuGameState gameState = new GomokuGameState(client);
 		GomokuGUI gui = new GomokuGUI(gameState, client);
 

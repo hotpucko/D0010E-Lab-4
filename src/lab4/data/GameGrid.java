@@ -1,6 +1,5 @@
 package lab4.data;
 
-
 import java.lang.reflect.Array;
 import java.util.Arrays;
 import java.util.Observable;
@@ -10,27 +9,26 @@ import java.util.Observable;
  */
 
 public class GameGrid extends Observable {
-	
-/* the space on the board is empty */
+
+	/* the space on the board is empty */
 	public static final int EMPTY = 0;
-	
-/*the space on the board is occupied by the opponent*/
+
+	/* the space on the board is occupied by the opponent */
 	public static final int OTHER = 1;
-	
-/*the space on the board is occupied by the player*/
+
+	/* the space on the board is occupied by the player */
 	public static final int ME = 2;
-	
-	static final int INROW = 5;
+
+	static final int INROW = 3;
 	int[][] grid;
 
 	/**
 	 * Constructor
 	 * 
-	 * Constructs the grid upon which player moves
-	 * will be made
+	 * Constructs the grid upon which player moves will be made
 	 * 
 	 * @param size
-	 * The width/height of the game grid
+	 *            The width/height of the game grid
 	 */
 	public GameGrid(int size) {
 
@@ -106,8 +104,9 @@ public class GameGrid extends Observable {
 	}
 
 	/**
-	 * Check if a player has the required amount of pieces in row to win
-	 * along vertical, horizontal and diagonal axes.
+	 * Check if a player has the required amount of pieces in row to win along
+	 * vertical, horizontal and diagonal axes.
+	 * 
 	 * @param player
 	 *            the player to check whether they have won
 	 * @return true if player has correct amount of pieces in row, false otherwise
@@ -121,7 +120,7 @@ public class GameGrid extends Observable {
 			for (int j = 0; j < grid.length; j++) {
 				int[] drwin = new int[INROW];
 				int[] dlwin = new int[INROW];
-														//empty arrays to compare the winnning array to
+				// empty arrays to compare the winning array to
 				int[] dwin = new int[INROW];
 				int[] rwin = new int[INROW];
 

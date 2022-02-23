@@ -1,6 +1,5 @@
 package lab4.data;
 
-
 import java.util.Observable;
 import java.util.Observer;
 
@@ -14,7 +13,7 @@ import lab4.client.GomokuClient;
 public class GomokuGameState extends Observable implements Observer {
 
 	// Game variables
-	private final int DEFAULT_SIZE = 15;
+	private final int DEFAULT_SIZE = 10;
 	private GameGrid gameGrid;
 
 	// Possible game states
@@ -63,8 +62,9 @@ public class GomokuGameState extends Observable implements Observer {
 	}
 
 	/**
-	 * This player makes a move at a specified location
-	 * The game checks whether the placed move won the game
+	 * This player makes a move at a specified location The game checks whether the
+	 * placed move won the game
+	 * 
 	 * @param x
 	 *            the x coordinate
 	 * @param y
@@ -175,6 +175,7 @@ public class GomokuGameState extends Observable implements Observer {
 		this.message = "your turn";
 		if (gameGrid.isWinner(GameGrid.OTHER) == true) {
 			message = "You lost >:(";
+			this.currentState = FINISHED;
 		}
 		setChanged();
 		notifyObservers();

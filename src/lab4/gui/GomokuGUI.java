@@ -1,7 +1,5 @@
 package lab4.gui;
 
-import java.awt.Button;
-import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Label;
 import java.awt.event.ActionEvent;
@@ -12,22 +10,24 @@ import java.util.Observable;
 import java.util.Observer;
 
 import javax.swing.Box;
-import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 
 import lab4.client.GomokuClient;
-import lab4.data.GameGrid;
 import lab4.data.GomokuGameState;
 
-/*
- * The GUI class
+/**
+ * GomokuGUI is the class for generating and handling the general Gomoku GUI
+ * 
+ * @author Stefan Jonsson4
+ *
  */
-
 public class GomokuGUI implements Observer {
 
 	private GomokuClient client;
 	private GomokuGameState gamestate;
+
+	// swing & awt variables
 	private JButton connectButton;
 	private JButton newGameButton;
 	private JButton disconnectButton;
@@ -51,31 +51,33 @@ public class GomokuGUI implements Observer {
 
 		// initialize variables
 		connectButton = new JButton("connect");
+		newGameButton = new JButton("new game");
+		disconnectButton = new JButton("disconnect");
 
+		// declare & initialize listeners
 		ActionListener connectListener = new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				connectionWindow = new ConnectionWindow(c);
 			}
 		};
-		connectButton.addActionListener(connectListener);
 
-		newGameButton = new JButton("new game");
 		ActionListener newGameListener = new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				g.newGame();
 			}
 		};
-		newGameButton.addActionListener(newGameListener);
 
-		disconnectButton = new JButton("disconnect");
 		ActionListener disconnectListener = new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				g.disconnect();
 			}
 		};
+
+		connectButton.addActionListener(connectListener);
+		newGameButton.addActionListener(newGameListener);
 		disconnectButton.addActionListener(disconnectListener);
 
-		messageLabel = new Label("text");
+		messageLabel = new Label("Waiting for connection.");
 
 		// initialize panel
 		GamePanel panel = new GamePanel(g.getGameGrid());
