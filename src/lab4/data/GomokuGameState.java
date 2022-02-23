@@ -1,17 +1,16 @@
 package lab4.data;
-/*
- * @author Arvid From
- */
+
 
 import java.util.Observable;
 import java.util.Observer;
 
 import lab4.client.GomokuClient;
 
-/**
+/*
  * Represents the state of a game
+ * 
+ * @author Arvid From
  */
-
 public class GomokuGameState extends Observable implements Observer {
 
 	// Game variables
@@ -26,7 +25,7 @@ public class GomokuGameState extends Observable implements Observer {
 	private int currentState = NOT_STARTED;
 	private GomokuClient client;
 
-	private String message = " Welcome to Gomoku";
+	private String message;
 
 	/**
 	 * The constructor
@@ -40,7 +39,9 @@ public class GomokuGameState extends Observable implements Observer {
 		gc.setGameState(this);
 		currentState = NOT_STARTED;
 		gameGrid = new GameGrid(DEFAULT_SIZE);
-		this.message = "unchanged gamestate";
+		this.message = "Welcome to Gomoku";
+		setChanged();
+		notifyObservers();
 	}
 
 	/**

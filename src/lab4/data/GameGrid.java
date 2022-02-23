@@ -1,13 +1,16 @@
 package lab4.data;
 
-/*
- * @author Arvid From
- */
+
 
 import java.lang.reflect.Array;
 import java.util.Arrays;
 import java.util.Observable;
 
+/*
+ * 
+ * 
+ * @author Arvid From
+ */
 public class GameGrid extends Observable {
 	
 /* the space on the board is empty */
